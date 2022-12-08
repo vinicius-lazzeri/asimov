@@ -1,63 +1,39 @@
-nome = str(input('insire um nome: ')).strip().upper()
-idade = int(input('idade: '))
-salario = float(input('salario: '))
-sexo = str(input('sexo [F/M]: ')).strip().upper()
-estado_civil = str(input('estado civil [S/C/V/D]: ')).strip().upper()
-#condição nome
-if len(nome) > 3:
-    nome = (f'NOME: {nome}')
-else:
-    print('valor inválido! insira seu nome completo!')
-    nome = str(input('insire um nome: '))
-#condição idade
-    if idade < 0 and idade > 150:
-        print('valor inválido! digite uma idade entre 0 e 150.')
-        idade = int(input('idade: '))
-    else:
-        idade = (f'IDADE: {idade} anos')
-#condição salário
-    if salario > 0:
-        salario = (f'SALARIO = R${salario:.2f}')
-    else:
-        print('valor inválido! insira seu salário novamente!')
-        salario = float(input('salario: '))
-        salario = (f'SALARIO = R${salario:.2f}')
-    #condição sexo
-if sexo == 'F' or sexo == 'M':
-    if sexo == 'F':
-        sexo = ('SEXO: FEMININO')
-    else:
-        sexo = ('SEXO: MASCULINO')
-else:
-    print('valor inválido! insira F para feminino e M para masculino!')
-    sexo = str(input('sexo [F/M]: '))
-    if sexo == 'F' or sexo == 'M':
-        if sexo == 'F':
-            sexo = ('SEXO: FEMININO')
-        else:
-            sexo = ('SEXO: MASCULINO')
+nome = str(input('Digite seu nome: ')).strip().upper()
+while len(nome) <= 3:
+    print('O nome deve conter mais de 3 caracteres!')
+    nome = str(input('Digite seu nome: ')).strip().upper()
 
-#condição estado civil
-if estado_civil == 'S' or estado_civil == 'C' or estado_civil == 'V' or estado_civil == 'D':
-    if estado_civil == 'C':
-        estado_civil = (f'ESTADO CIVIL: CASADO(A)')
-    elif estado_civil == 'S':
-        estado_civil = (f'ESTADO CIVIL: SOLTEIRO(A)')
-    elif estado_civil == 'V':
-        estado_civil = (f'ESTADO CIVIL: VIÚVO(A)')
-    elif estado_civil == 'D':
-        estado_civil = (f'ESTADO CIVIL: DIVORCIADO(A)')
-else:
-    print('VALOR INVÁLIDO! DIGITE [S/C/V/D] (SOLTEIRO/CASADO/VIÚVO/DIVORCIADO')
-    estado_civil = str(input('estado civil [S/C/V/D]: '))
-    if estado_civil == 'C':
-        estado_civil = (f'ESTADO CIVIL: CASADO(A)')
-    elif estado_civil == 'S':
-        estado_civil = (f'ESTADO CIVIL: SOLTEIRO(A)')
-    elif estado_civil == 'V':
-        estado_civil = (f'ESTADO CIVIL: VIÚVO(A)')
-    elif estado_civil == 'D':
-        estado_civil = (f'ESTADO CIVIL: DIVORCIADO(A)')
+idade = int(input('Idade: '))
+while (idade <= 0 or idade >= 150):
+    print('A idade deve estar entre 0 e 150!')
+    idade = int(input('Idade: '))
 
-print(f'INFORMAÇÕES: {nome} | {idade} | {sexo}')
-print(f'{salario} | {estado_civil}')
+salario = float(input('Salario: '))
+while (salario <= 0):
+    print('Salário deve ser maior que 0')
+    salario = float(input('Salario: '))
+
+sexo = str(input('Sexo [F/M]: ')).strip().upper()
+while sexo not in ["F","M"]:
+    print('O sexo deve ser "M" (Masc) ou "F"(Fem)!')
+    sexo = str(input('Sexo [F/M]: ')).strip().upper()
+    if sexo == "F":
+        sexo = 'FEMININO'
+    elif sexo == "M":
+        sexo = "MASCULINO"
+
+estado_civil = str(input('Estado civil [S/C/V/D]: ')).strip().upper()
+while estado_civil not in ["S", "C", "V", "D"]:
+    print('Valor inválido! Digite S, C, V ou D! (SOLTEIRO/CASADO/VIÚVO/DIVORCIADO)')
+    estado_civil = str(input('Estado civil [S/C/V/D]: ')).strip().upper()
+    if estado_civil == "S":
+        estado_civil = 'SOLTEIRO(A)'
+    elif estado_civil == "C":
+        estado_civil = 'CASADO(A)'
+    elif estado_civil == "V":
+        estado_civil = 'VIÚVO(A)'
+    elif estado_civil == "D":
+        estado_civil = 'DIVORCIADO(A)'
+
+print(f'NOME: {nome} | IDADE: {idade} ANOS | SEXO: {sexo}')
+print(f'SALÁRIO: R${salario} |ESTADO CIVIL: {estado_civil}')
