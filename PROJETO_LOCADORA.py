@@ -46,8 +46,18 @@ while True:
         if confirm == 0:
             print(f'Parabéns! Carro alugado: {carros[carro_solicitado][0]}\nQuantidade de dias: {qtd_dias} dias!\nDirija com cuidado! ♥ ')
             carros_alugados.append(carros.pop(carro_solicitado))
+    
     elif ordem_cliente == 2:
-        pass
+        if len(carros_alugados) == 0:
+            print('Não há carros para devolver. ')
+        else:
+            print('Lista de carros alugados: ')
+            mostrar_portfolio_carros(carros_alugados)
+            print('Qual você deseja devolver?')
+            carro_solicitado = int(input('Digite o número do carro a ser devolvido: '))
+            if confirm == 0:
+                print(f'Obrigado por devolver o carro {carros_alugados[carro_solicitado][0]}')
+                carros.append(carros_alugados.pop(carro_solicitado))
 
     print('=' * 48)
     saida_cliente = int(input('Deseja sair do programa? [0] Não | [1] Sim \n'))
