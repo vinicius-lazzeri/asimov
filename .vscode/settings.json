@@ -3,5 +3,9 @@
         "aluguel",
         "Onix",
         "placar"
+    ],
+    "cSpell.ignoreWords": [
+        "funcao",
+        "maiusculo"
     ]
 }
