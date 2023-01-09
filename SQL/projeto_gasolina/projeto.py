@@ -11,5 +11,12 @@ df_data_gasolina_2000.to_sql('Gasolina 2000', conn, index_label='Gasolina 2000 E
 
 df_data_gasolina_2010.to_sql('Gasolina 2010', conn, index_label='Gasolina 2010 Estatísticas')
 
-df_data_gasolina_geral = df_data_gasolina_2000 + df_data_gasolina_2010
+df_gasolina_geral = pd.concat([df_data_gasolina_2000, df_data_gasolina_2010])
 
+df_gasolina_geral.to_sql('Gráfico Geral', conn, index_label= 'Graf. Gasolina 2000 & 2010')
+
+
+df_gasolina_geral.info()
+df_gasolina_geral.head()
+
+df_gasolina_geral['DATA INICIAL'].info()

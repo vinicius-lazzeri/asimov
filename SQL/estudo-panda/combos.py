@@ -28,6 +28,7 @@ df1
 df2
 df3
 
+#Concat encaixa um DF em outro. axis=1 concatena horizontalmente em caso de haver mais colunas em um df específico. Concat é ideal quando os DFs possuem os mesmos índices e colunas. Em caso de colunas a mais = axis=1 | índices a mais: axis=0.
 pd.concat([df1,df2,df3], axis=1)
 
 esquerda = pd.DataFrame({
@@ -45,6 +46,8 @@ direita = pd.DataFrame({
 esquerda
 direita
 
+
+#O merge funciona nos auxiliando encaixando os dados que de alguma forma a utilizar as colunas como referência para como proceder com este encaixe. Onde 'key' neste caso é a referência.
 pd.merge(esquerda, direita, on='Key')
 
 esquerda = pd.DataFrame({
