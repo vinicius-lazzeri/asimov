@@ -70,3 +70,38 @@ df_mensal_rio = df_rio_de_janeiro.groupby('ANO-MES')[['PREÇO MÉDIO REVENDA', '
 
 #MÉTODO SHIFT: ÚTIL PARA MERCADO FINANCEIRO E SERIES TEMPORAIS, FAZENDO UM DESLOCAMENTO DO CONJUNTO DE DADOS MANTENDO O ÍNDICE FIXO
 (df_mensal_rio[df_mensal_rio['MES'] == 12] / df_mensal_rio[df_mensal_rio['MES'] == 12].shift(1)-1) * 100
+
+#Tabela contendo uma série temporal com a diferença absoluta e percentual entre os valores mais baratos e caros, também apresentando todos os estados e seus devidos registros de gasolina mais barata e mais cara entre 2000 e 2020. 
+
+#Criando uma variável para recolher as informações através de um groupby
+df_max = df_gasolina_comum.groupby('ANO-MES').max()['PREÇO MÉDIO REVENDA']
+df_min = df_gasolina_comum.groupby('ANO-MES').min()['PREÇO MÉDIO REVENDA']
+
+#Recolhendo as informações através dos extremos máximos e mínimos por índices
+idx_max = df_gasolina_comum.groupby('ANO-MES')['PREÇO MÉDIO REVENDA'].idxmax()
+idx_min = df_gasolina_comum.groupby('ANO-MES')['PREÇO MÉDIO REVENDA'].idxmin()
+
+
+#Criando um DF vazio para poder enriquece-lo com as informações
+df_diff = pd.DataFrame()
+
+#Colunas contendo as informações descritas nas variáveis
+
+df_diff['DIFERENÇA ABSOLUTA'] = df_max - df_min
+
+df_diff['DIFERENÇA PERCENTUAL'] = (df_max - df_min) / df_min * 100
+
+df_diff['MAX'] = df_max
+df_diff['MIN'] = df_min
+
+#Para não dar erro de leitura da informação e prevenir de 'NaN', utilizando values e posicionando as informações de acordo com seus estados.
+df_diff['ESTADO MÁX'] = df_gasolina_comum.loc[idx_max, :][['ESTADO']].values
+df_diff['ESTADO MIN'] = df_gasolina_comum.loc[idx_min, :][['ESTADO']].values
+
+#Estado com as maiores ocorrências de estado com a gasolina mais cara durante esses 20 anos.
+df_diff['ESTADO MÁX'].value_counts()
+
+#Estado com as menores ocorrências de estado com a gasolina mais cara durante esses 20 anos.
+df_diff['ESTADO MIN'].value_counts()
+
+
