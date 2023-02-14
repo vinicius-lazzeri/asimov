@@ -47,7 +47,6 @@ df_gasolina_comum
 df_gasolina_comum[df_gasolina_comum['ANO-MES'] == '2008 - 08']['PREÇO MÉDIO REVENDA'].mean()
 
 #Preço médio de revenda da gasolina em maio de 2014 em São Paulo
-
 df_gasolina_comum[(df_gasolina_comum['ANO-MES'] == '2014 - 05') & (df_gasolina_comum['ESTADO'] == 'SAO PAULO')]['PREÇO MÉDIO REVENDA'].mean() 
 
 #Quais estados a gasolina ultrapassou a barreira dos R$5.00 e quando isso aconteceu
